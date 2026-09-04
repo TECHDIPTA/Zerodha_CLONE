@@ -33,6 +33,17 @@ const DASHBOARD_CLIENT_URL =
   "http://localhost:5174";
 
 // ======================================================
+// ENVIRONMENT
+// ======================================================
+
+const isProduction =
+  process.env.NODE_ENV === "production";
+
+// Render runs behind a proxy.
+// This allows secure cookies to work correctly.
+app.set("trust proxy", 1);
+
+// ======================================================
 // ENVIRONMENT VALIDATION
 // ======================================================
 
@@ -115,12 +126,29 @@ app.use(
 
       httpOnly: true,
 
-      secure: false,
+      /*
+       * Local:
+       * secure = false
+       *
+       * Production:
+       * secure = true
+       */
+      secure: isProduction,
 
-      // Works for your localhost development
-      // setup where 5173 and 5174 are separate
-      // frontend origins but share this backend.
-      sameSite: "lax",
+      /*
+       * Local:
+       * lax
+       *
+       * Production:
+       * none
+       *
+       * Required because frontend/dashboard
+       * and backend will be on different domains.
+       */
+      sameSite:
+        isProduction
+          ? "none"
+          : "lax",
     },
   })
 );
@@ -168,6 +196,7 @@ const isAuthenticated = (
 
   return res.status(401).json({
     authenticated: false,
+
     message:
       "Unauthorized. Please log in.",
   });
@@ -180,14 +209,11 @@ const isAuthenticated = (
 app.get("/", (req, res) => {
   return res.status(200).json({
     success: true,
+
     message:
       "Server is running successfully",
   });
 });
-
-// ======================================================
-// AUTHENTICATION
-// ======================================================
 
 // ======================================================
 // CURRENT USER
@@ -208,7 +234,9 @@ app.get(
 
     return res.status(200).json({
       authenticated: true,
-      user: getSafeUser(req.user),
+
+      user:
+        getSafeUser(req.user),
     });
   }
 );
@@ -227,7 +255,8 @@ app.get(
         "email",
       ],
 
-      prompt: "select_account",
+      prompt:
+        "select_account",
     }
   )
 );
@@ -256,18 +285,6 @@ app.get(
 
     const welcomeMsg =
       `Welcome, ${username}!`;
-
-    /*
-     * IMPORTANT:
-     *
-     * Google authentication is successful.
-     *
-     * Passport has already created the
-     * authenticated session.
-     *
-     * We now send the user directly to
-     * the dashboard.
-     */
 
     const dashboardUrl =
       `${DASHBOARD_CLIENT_URL}/?flash=${encodeURIComponent(
@@ -332,8 +349,12 @@ app.post(
       const newUser =
         new User({
           username,
+
           email,
-          providers: ["local"],
+
+          providers: [
+            "local",
+          ],
 
           availableMargin:
             50000.0,
@@ -488,16 +509,6 @@ app.post(
 app.post(
   "/auth/logout",
   (req, res, next) => {
-    /*
-     * IMPORTANT:
-     *
-     * THIS is the only route that destroys
-     * the user's authentication session.
-     *
-     * Dashboard Cancel should NEVER call
-     * this endpoint.
-     */
-
     req.logout(
       (logoutError) => {
         if (logoutError) {
@@ -533,9 +544,16 @@ app.post(
               "connect.sid",
               {
                 path: "/",
+
                 httpOnly: true,
-                sameSite: "lax",
-                secure: false,
+
+                sameSite:
+                  isProduction
+                    ? "none"
+                    : "lax",
+
+                secure:
+                  isProduction,
               }
             );
 
@@ -1244,7 +1262,7 @@ mongoose
       PORT,
       () => {
         console.log(
-          `🚀 Server running on http://localhost:${PORT}`
+          `🚀 Server running on port ${PORT}`
         );
 
         console.log(
@@ -1253,6 +1271,14 @@ mongoose
 
         console.log(
           `📊 Dashboard client: ${DASHBOARD_CLIENT_URL}`
+        );
+
+        console.log(
+          `🌍 Environment: ${
+            isProduction
+              ? "production"
+              : "development"
+          }`
         );
       }
     );
