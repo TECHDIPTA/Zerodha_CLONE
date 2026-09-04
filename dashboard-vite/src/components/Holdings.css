@@ -1,0 +1,549 @@
+/* =========================================================
+   HOLDINGS PAGE
+========================================================= */
+
+.holdings-container {
+  width: 100%;
+
+  padding: 32px 4% 45px;
+
+  margin: 0;
+
+  box-sizing: border-box;
+
+  color: #424242;
+}
+
+
+/* =========================================================
+   HOLDINGS TITLE
+========================================================= */
+
+.holdings-title {
+  margin: 0 0 24px 0;
+
+  font-size: 1.45rem;
+
+  line-height: 1.3;
+
+  font-weight: 500;
+
+  color: #424242;
+
+  letter-spacing: -0.1px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.order-table-wrapper {
+  width: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  overflow-x: auto;
+
+  overflow-y: visible;
+
+  box-sizing: border-box;
+
+  border-top: 1px solid #eeeeee;
+}
+
+
+/* =========================================================
+   HOLDINGS TABLE
+========================================================= */
+
+.holdings-table {
+  width: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  border-collapse: collapse;
+
+  border-spacing: 0;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.holdings-table thead {
+  background: #fafafa;
+}
+
+.holdings-table th {
+  padding: 14px 12px;
+
+  text-align: right;
+
+  color: #777777;
+
+  font-size: 0.78rem;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid #e6e6e6;
+
+  box-sizing: border-box;
+
+  text-transform: none;
+}
+
+.holdings-table th:first-child,
+.holdings-table td:first-child {
+  text-align: left;
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+.holdings-table tbody tr {
+  height: 48px;
+
+  transition:
+    background-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.holdings-table tbody tr:hover {
+  background: #fafafa;
+
+  box-shadow:
+    inset 2px 0 0 #387ed1;
+}
+
+
+/* =========================================================
+   TABLE CELLS
+========================================================= */
+
+.holdings-table td {
+  padding: 13px 12px;
+
+  text-align: right;
+
+  font-size: 0.88rem;
+
+  font-weight: 400;
+
+  line-height: 1.25;
+
+  color: #4a4a4a;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid #f1f1f1;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INSTRUMENT / STOCK NAME
+========================================================= */
+
+.holdings-table td.instrument-cell {
+  font-weight: 600;
+
+  color: #333333;
+
+  font-size: 0.9rem;
+}
+
+.stock-name {
+  font-weight: 600;
+
+  color: #333333;
+}
+
+
+/* =========================================================
+   PROFIT / LOSS
+========================================================= */
+
+.profit {
+  color: #48c237 !important;
+}
+
+.loss {
+  color: #fa764e !important;
+}
+
+.holdings-table td.profit {
+  color: #48c237 !important;
+
+  font-weight: 500;
+}
+
+.holdings-table td.loss {
+  color: #fa764e !important;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   PERCENTAGE COLUMNS
+========================================================= */
+
+.percent-cell,
+.day-change {
+  font-weight: 500 !important;
+}
+
+
+/* =========================================================
+   HOLDINGS GRAPH
+========================================================= */
+
+.holdings-graph {
+  width: 100%;
+
+  margin: 34px 0 0 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   GRAPH CONTAINER
+========================================================= */
+
+.vertical-graph-container {
+  position: relative;
+
+  width: 100%;
+
+  height: 400px;
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   GRAPH CANVAS
+========================================================= */
+
+.holdings-graph canvas,
+.vertical-graph-container canvas {
+  display: block !important;
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+========================================================= */
+
+.summary-card {
+  width: 100%;
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content: space-between;
+
+  gap: 0;
+
+  margin-top: 30px;
+
+  padding: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 4px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   SUMMARY COLUMN
+========================================================= */
+
+.summary-col {
+  flex: 1 1 0;
+
+  min-width: 0;
+
+  text-align: center;
+
+  padding: 20px 16px;
+
+  box-sizing: border-box;
+}
+
+.summary-col + .summary-col {
+  border-left: 1px solid #eeeeee;
+}
+
+
+/* =========================================================
+   SUMMARY VALUE
+========================================================= */
+
+.summary-value {
+  margin: 0 0 7px 0;
+
+  font-size: 1.35rem;
+
+  line-height: 1.25;
+
+  font-weight: 500;
+
+  color: #424242;
+
+  white-space: nowrap;
+}
+
+.summary-value.profit {
+  color: #48c237 !important;
+}
+
+.summary-value.loss {
+  color: #fa764e !important;
+}
+
+
+/* =========================================================
+   SUMMARY LABEL
+========================================================= */
+
+.summary-label {
+  margin: 0;
+
+  font-size: 0.78rem;
+
+  line-height: 1.3;
+
+  font-weight: 400;
+
+  color: #999999;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .holdings-container {
+    width: 100%;
+
+    padding: 24px 16px 35px;
+  }
+
+
+  /* -----------------------------------------
+     TITLE
+  ----------------------------------------- */
+
+  .holdings-title {
+    margin-bottom: 18px;
+
+    font-size: 1.22rem;
+
+    font-weight: 500;
+  }
+
+
+  /* -----------------------------------------
+     TABLE
+  ----------------------------------------- */
+
+  .order-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-top: 1px solid #eeeeee;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .holdings-table {
+    min-width: 720px;
+  }
+
+  .holdings-table th {
+    padding: 12px 9px;
+
+    font-size: 0.74rem;
+  }
+
+  .holdings-table td {
+    padding: 11px 9px;
+
+    font-size: 0.76rem;
+  }
+
+  .holdings-table tbody tr {
+    height: 44px;
+  }
+
+
+  /* -----------------------------------------
+     GRAPH
+  ----------------------------------------- */
+
+  .holdings-graph {
+    margin-top: 26px;
+  }
+
+  .vertical-graph-container {
+    height: 340px;
+  }
+
+
+  /* -----------------------------------------
+     SUMMARY
+  ----------------------------------------- */
+
+  .summary-card {
+    flex-direction: column;
+
+    gap: 0;
+
+    margin-top: 24px;
+  }
+
+  .summary-col {
+    width: 100%;
+
+    padding: 16px 12px;
+  }
+
+  .summary-col + .summary-col {
+    border-left: 0;
+
+    border-top: 1px solid #eeeeee;
+  }
+
+  .summary-value {
+    font-size: 1.2rem;
+  }
+
+  .summary-label {
+    font-size: 0.75rem;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .holdings-container {
+    padding: 20px 12px 30px;
+  }
+
+  .holdings-title {
+    font-size: 1.15rem;
+  }
+
+  .holdings-table {
+    min-width: 700px;
+  }
+
+  .holdings-table th {
+    padding: 10px 8px;
+
+    font-size: 0.7rem;
+  }
+
+  .holdings-table td {
+    padding: 10px 8px;
+
+    font-size: 0.72rem;
+  }
+
+  .vertical-graph-container {
+    height: 300px;
+  }
+
+  .summary-value {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .holdings-container {
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+  .holdings-title {
+    font-size: 1.08rem;
+  }
+
+  .holdings-table {
+    min-width: 680px;
+  }
+
+  .holdings-table th {
+    padding: 9px 7px;
+
+    font-size: 0.67rem;
+  }
+
+  .holdings-table td {
+    padding: 9px 7px;
+
+    font-size: 0.69rem;
+  }
+
+  .vertical-graph-container {
+    height: 280px;
+  }
+}

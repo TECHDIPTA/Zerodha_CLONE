@@ -1,0 +1,237 @@
+.summary-page {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 45px 55px 70px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.summary-header {
+  margin-bottom: 38px;
+}
+
+.summary-header h1 {
+  margin: 0;
+
+  font-size: 25px;
+  font-weight: 500;
+
+  color: #424242;
+}
+
+.summary-header p {
+  margin: 8px 0 0;
+
+  color: #999;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.summary-card {
+  margin-bottom: 28px;
+
+  border: 1px solid #e6e6e6;
+
+  border-radius: 4px;
+
+  background: #fff;
+
+  overflow: hidden;
+}
+
+.summary-card-header {
+  padding: 18px 22px;
+
+  border-bottom: 1px solid #ededed;
+}
+
+.summary-card-header h2 {
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #555;
+}
+
+.summary-card-header h2 span {
+  color: #999;
+
+  font-weight: 400;
+}
+
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+.summary-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 1.3fr)
+    minmax(150px, 1fr)
+    minmax(150px, 1fr);
+}
+
+.summary-main {
+  padding: 27px 22px;
+
+  border-right: 1px solid #ededed;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.summary-value {
+  font-size: 27px;
+
+  font-weight: 400;
+
+  color: #424242;
+}
+
+.summary-label {
+  color: #999;
+
+  font-size: 12px;
+}
+
+.summary-label small {
+  margin-left: 8px;
+
+  font-size: 11px;
+}
+
+.summary-stat {
+  padding: 27px 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  border-right: 1px solid #ededed;
+}
+
+.summary-stat:last-child {
+  border-right: 0;
+}
+
+.summary-stat span {
+  font-size: 12px;
+
+  color: #999;
+}
+
+.summary-stat strong {
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #555;
+}
+
+
+/* ==========================================================================
+   COLORS
+   ========================================================================== */
+
+.profit {
+  color: #4caf50 !important;
+}
+
+.loss {
+  color: #df514c !important;
+}
+
+
+/* ==========================================================================
+   ACCOUNT OVERVIEW
+   ========================================================================== */
+
+.quick-card {
+  max-width: 600px;
+}
+
+.overview-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 22px;
+
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.overview-row:last-child {
+  border-bottom: 0;
+}
+
+.overview-row span {
+  font-size: 12px;
+
+  color: #888;
+}
+
+.overview-row strong {
+  font-size: 13px;
+
+  color: #444;
+
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .summary-page {
+    padding: 28px 18px 80px;
+  }
+
+  .summary-header {
+    margin-bottom: 25px;
+  }
+
+  .summary-header h1 {
+    font-size: 21px;
+  }
+
+  .summary-grid {
+    display: block;
+  }
+
+  .summary-main {
+    border-right: 0;
+    border-bottom: 1px solid #ededed;
+  }
+
+  .summary-stat {
+    border-right: 0;
+
+    border-bottom: 1px solid #ededed;
+  }
+
+  .summary-stat:last-child {
+    border-bottom: 0;
+  }
+}

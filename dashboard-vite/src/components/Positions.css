@@ -1,0 +1,129 @@
+.positions-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+/* Base Desktop Table Styles */
+.order-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.order-table th {
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.stock-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.profit {
+  color: #10b981; /* Green */
+  font-weight: 600;
+}
+
+.loss {
+  color: #ef4444; /* Red */
+  font-weight: 600;
+}
+
+/* ==========================================
+   Mobile Responsive Adjustments (< 768px)
+   Transforms table rows into readable cards
+   ========================================== */
+@media screen and (max-width: 768px) {
+  .order-table-wrapper {
+    border: none;
+    background: transparent;
+  }
+
+  .order-table,
+  .order-table thead,
+  .order-table tbody,
+  .order-table th,
+  .order-table td,
+  .order-table tr {
+    display: block;
+  }
+
+  /* Hide headers on small screens */
+  .order-table thead {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  /* Each stock transforms into a standalone card */
+  .order-table tbody tr {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+  }
+
+  .order-table td {
+    padding: 2px 0;
+    border: none;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Add labels dynamically from data-label attributes */
+  .order-table td::before {
+    content: attr(data-label);
+    font-size: 0.725rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  /* Primary fields span full width on mobile */
+  .order-table td[data-label="Instrument"] {
+    grid-column: span 2;
+    font-size: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+
+  /* Layout tweaks for key trading metrics */
+  .order-table td[data-label="P&L"],
+  .order-table td[data-label="Chg."] {
+    font-size: 0.95rem;
+  }
+}

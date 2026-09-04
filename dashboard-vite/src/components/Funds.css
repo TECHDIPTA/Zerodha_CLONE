@@ -1,0 +1,889 @@
+/* =========================================================
+   FUNDS PAGE
+========================================================= */
+
+.funds-page {
+  width: 100%;
+
+  padding: 32px 4% 45px;
+
+  box-sizing: border-box;
+
+  color: #424242;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.funds-header {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.funds-title {
+  margin: 0;
+
+  font-size: 1.45rem;
+
+  line-height: 1.3;
+
+  font-weight: 500;
+
+  color: #424242;
+
+  letter-spacing: -0.1px;
+}
+
+.funds-subtitle {
+  margin: 7px 0 0;
+
+  font-size: 0.82rem;
+
+  line-height: 1.5;
+
+  color: #999;
+}
+
+
+/* =========================================================
+   QUICK STATS
+========================================================= */
+
+.funds-stats {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 36px;
+}
+
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+.fund-stat-card {
+  min-width: 0;
+
+  padding: 20px 22px;
+
+  background: #fff;
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.12s ease;
+}
+
+.fund-stat-card:hover {
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.06);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   STAT TEXT
+========================================================= */
+
+.fund-stat-label {
+  margin-bottom: 10px;
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  color: #999;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.35px;
+}
+
+.fund-stat-value {
+  font-size: 1.45rem;
+
+  line-height: 1.25;
+
+  font-weight: 500;
+
+  color: #424242;
+}
+
+.fund-stat-value.primary {
+  color: #387ed1;
+}
+
+.fund-stat-note {
+  margin-top: 7px;
+
+  font-size: 0.73rem;
+
+  color: #aaa;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.funds-section {
+  width: 100%;
+
+  margin-bottom: 34px;
+}
+
+.section-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+.section-heading h3 {
+  margin: 0;
+
+  font-size: 1.08rem;
+
+  line-height: 1.3;
+
+  font-weight: 500;
+
+  color: #424242;
+}
+
+.section-heading p {
+  margin: 5px 0 0;
+
+  font-size: 0.78rem;
+
+  color: #999;
+}
+
+
+/* =========================================================
+   DEPOSIT CARD
+========================================================= */
+
+.fund-deposit-card {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 24px 26px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fafcff 100%
+    );
+
+  border: 1px solid #e5edf7;
+
+  border-radius: 6px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DEPOSIT COPY
+========================================================= */
+
+.deposit-copy {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.deposit-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px 9px;
+
+  margin-bottom: 9px;
+
+  border-radius: 20px;
+
+  background: #edf5fd;
+
+  color: #387ed1;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.35px;
+}
+
+.deposit-copy h4 {
+  margin: 0;
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  color: #424242;
+}
+
+.deposit-copy p {
+  margin: 6px 0 0;
+
+  max-width: 560px;
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+
+  color: #999;
+}
+
+
+/* =========================================================
+   DEPOSIT FORM
+========================================================= */
+
+.deposit-form {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.deposit-input-wrapper {
+  position: relative;
+
+  width: 190px;
+}
+
+.rupee-prefix {
+  position: absolute;
+
+  left: 12px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #777;
+
+  font-size: 0.9rem;
+
+  pointer-events: none;
+}
+
+.deposit-input-wrapper input {
+  width: 100%;
+
+  height: 40px;
+
+  padding:
+    0 12px 0 29px;
+
+  border:
+    1px solid #dcdcdc;
+
+  border-radius: 4px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #424242;
+
+  font-size: 0.85rem;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.deposit-input-wrapper input:focus {
+  border-color: #387ed1;
+
+  box-shadow:
+    0 0 0 2px rgba(
+      56,
+      126,
+      209,
+      0.08
+    );
+}
+
+.deposit-input-wrapper input::placeholder {
+  color: #aaa;
+}
+
+
+/* =========================================================
+   ADD FUNDS BUTTON
+========================================================= */
+
+.add-funds-button {
+  height: 40px;
+
+  padding:
+    0 20px;
+
+  border: 0;
+
+  border-radius: 4px;
+
+  background: #4caf50;
+
+  color: #fff;
+
+  font-size: 0.82rem;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+}
+
+.add-funds-button:hover:not(:disabled) {
+  background: #429b46;
+
+  box-shadow:
+    0 3px 10px rgba(
+      76,
+      175,
+      80,
+      0.2
+    );
+}
+
+.add-funds-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.add-funds-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   EQUITY LAYOUT
+========================================================= */
+
+.equity-layout {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.6fr)
+    minmax(280px, 0.8fr);
+
+  gap: 20px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   EQUITY CARD
+========================================================= */
+
+.equity-card {
+  width: 100%;
+
+  padding: 8px 22px;
+
+  background: #fff;
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EQUITY ROW
+========================================================= */
+
+.equity-row {
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+.equity-label {
+  color: #777;
+
+  font-size: 0.8rem;
+
+  font-weight: 400;
+}
+
+.equity-value {
+  color: #424242;
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.equity-value.primary {
+  color: #387ed1;
+
+  font-size: 1.2rem;
+
+  font-weight: 600;
+}
+
+.highlight-row {
+  min-height: 66px;
+}
+
+.muted-row .equity-label,
+.muted-row .equity-value {
+  color: #a3a3a3;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.equity-divider {
+  width: 100%;
+
+  height: 1px;
+
+  background: #eeeeee;
+}
+
+
+/* =========================================================
+   COMMODITY CARD
+========================================================= */
+
+.commodity-card {
+  width: 100%;
+
+  min-height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px 24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fafafa 100%
+    );
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+.commodity-icon {
+  width: 44px;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 50%;
+
+  background: #f2f7fc;
+
+  color: #387ed1;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+}
+
+.commodity-badge {
+  margin-bottom: 7px;
+
+  color: #999;
+
+  font-size: 0.66rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.6px;
+}
+
+.commodity-card h4 {
+  margin: 0;
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  color: #424242;
+}
+
+.commodity-card p {
+  max-width: 300px;
+
+  margin: 8px 0 20px;
+
+  font-size: 0.77rem;
+
+  line-height: 1.55;
+
+  color: #999;
+}
+
+
+/* =========================================================
+   COMMODITY BUTTON
+========================================================= */
+
+.commodity-button {
+  padding:
+    9px 18px;
+
+  border: 1px solid #387ed1;
+
+  border-radius: 4px;
+
+  background: #387ed1;
+
+  color: #fff;
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.commodity-button:hover {
+  background: #2f70bd;
+}
+
+.commodity-button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  .funds-page {
+    padding:
+      30px 4% 40px;
+  }
+
+  .funds-stats {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+  }
+
+  .fund-stat-card {
+    padding: 17px 18px;
+  }
+
+  .fund-stat-value {
+    font-size: 1.2rem;
+  }
+
+  .fund-deposit-card {
+    gap: 20px;
+
+    padding:
+      21px 22px;
+  }
+
+  .equity-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(250px, 0.75fr);
+
+    gap: 16px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .funds-page {
+    padding:
+      24px 16px 34px;
+  }
+
+
+  /* -----------------------------------------
+     HEADER
+  ----------------------------------------- */
+
+  .funds-title {
+    font-size: 1.24rem;
+  }
+
+  .funds-subtitle {
+    font-size: 0.76rem;
+  }
+
+
+  /* -----------------------------------------
+     STATS
+  ----------------------------------------- */
+
+  .funds-stats {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 28px;
+  }
+
+  .fund-stat-card {
+    padding:
+      16px 18px;
+  }
+
+  .fund-stat-value {
+    font-size: 1.2rem;
+  }
+
+
+  /* -----------------------------------------
+     DEPOSIT
+  ----------------------------------------- */
+
+  .fund-deposit-card {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 18px;
+
+    padding:
+      20px 18px;
+  }
+
+  .deposit-copy p {
+    max-width: none;
+  }
+
+  .deposit-form {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .deposit-input-wrapper {
+    width: 100%;
+  }
+
+  .deposit-input-wrapper input,
+  .add-funds-button {
+    width: 100%;
+  }
+
+
+  /* -----------------------------------------
+     EQUITY
+  ----------------------------------------- */
+
+  .equity-layout {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .equity-card {
+    padding:
+      8px 16px;
+  }
+
+  .equity-row {
+    min-height: 46px;
+  }
+
+  .highlight-row {
+    min-height: 60px;
+  }
+
+  .equity-value.primary {
+    font-size: 1.05rem;
+  }
+
+  .commodity-card {
+    min-height: 260px;
+
+    padding:
+      26px 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .funds-page {
+    padding:
+      20px 12px 30px;
+  }
+
+  .funds-title {
+    font-size: 1.16rem;
+  }
+
+  .funds-subtitle {
+    font-size: 0.73rem;
+  }
+
+  .section-heading h3 {
+    font-size: 1rem;
+  }
+
+  .section-heading p {
+    font-size: 0.72rem;
+  }
+
+  .fund-stat-card {
+    padding:
+      15px 16px;
+  }
+
+  .fund-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .fund-stat-value {
+    font-size: 1.1rem;
+  }
+
+  .equity-row {
+    gap: 12px;
+  }
+
+  .equity-label {
+    font-size: 0.75rem;
+  }
+
+  .equity-value {
+    font-size: 0.78rem;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .funds-page {
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+  .fund-stat-value {
+    font-size: 1rem;
+  }
+
+  .deposit-copy h4 {
+    font-size: 0.92rem;
+  }
+
+  .commodity-card h4 {
+    font-size: 0.92rem;
+  }
+}

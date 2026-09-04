@@ -1,0 +1,134 @@
+/* =========================================================
+   BOTTOM NAVIGATION
+   Desktop: completely hidden
+========================================================= */
+
+.bottom-nav {
+  display: none !important;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    height: 58px !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+
+    background: #ffffff !important;
+
+    border-top: 1px solid #e6e6e6 !important;
+
+    box-shadow:
+      0 -2px 10px rgba(0, 0, 0, 0.06) !important;
+
+    z-index: 9999 !important;
+
+    padding: 0 !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+
+    margin: 0 !important;
+  }
+
+  .bottom-nav-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 58px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 2px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #777777 !important;
+
+    background: transparent !important;
+
+    text-decoration: none !important;
+
+    font-size: 9px !important;
+    line-height: 1 !important;
+
+    overflow: hidden !important;
+
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .bottom-nav-item:hover {
+    color: #387ed1 !important;
+    background: transparent !important;
+  }
+
+  .bottom-nav-item.active {
+    color: #387ed1 !important;
+    background: transparent !important;
+  }
+
+  .bottom-nav-icon {
+    display: block !important;
+
+    width: 20px !important;
+    height: 20px !important;
+
+    font-size: 20px !important;
+
+    flex-shrink: 0 !important;
+  }
+
+  .bottom-nav-label {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    text-align: center !important;
+
+    line-height: 1.2 !important;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media screen and (max-width: 360px) {
+  .bottom-nav {
+    height: 56px !important;
+  }
+
+  .bottom-nav-item {
+    height: 56px !important;
+    font-size: 8px !important;
+  }
+
+  .bottom-nav-icon {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 18px !important;
+  }
+}

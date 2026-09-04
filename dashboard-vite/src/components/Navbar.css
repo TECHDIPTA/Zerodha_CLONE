@@ -1,0 +1,543 @@
+:root {
+  --navbar-height: 60px;
+
+  --border: #e6e6e6;
+  --border-light: #eeeeee;
+
+  --text: #424242;
+  --muted: #777777;
+
+  --blue: #387ed1;
+  --blue-dark: #245b9e;
+
+  --green: #4caf50;
+  --red: #df514c;
+
+  --white: #ffffff;
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+.navbar-container,
+.navbar-container * {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   MAIN NAVBAR
+========================================= */
+
+.navbar-container {
+  position: sticky;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  height: var(--navbar-height);
+
+  display: flex;
+  align-items: center;
+
+  background: var(--white);
+
+  border-bottom: 1px solid var(--border);
+
+  z-index: 1000;
+}
+
+/* =========================================
+   LEFT
+========================================= */
+
+.navbar-left {
+  min-width: 0;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-link {
+  width: 54px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+.navbar-logo {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+/* =========================================
+   INDICES
+========================================= */
+
+.indices-panel {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+
+  padding-left: 12px;
+}
+
+.index-pill {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+}
+
+.index-name {
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.index-val {
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.index-val.loss {
+  color: var(--red);
+}
+
+.index-val.profit {
+  color: var(--green);
+}
+
+.index-divider {
+  width: 1px;
+  height: 20px;
+
+  background: var(--border);
+}
+
+/* =========================================
+   MAIN DIVIDER
+========================================= */
+
+.navbar-divider {
+  width: 1px;
+  height: 26px;
+
+  background: var(--border);
+
+  flex-shrink: 0;
+}
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.navbar-right {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 0 18px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================
+   DESKTOP LINKS
+========================================= */
+
+.desktop-links {
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+.desktop-links a {
+  position: relative;
+
+  height: var(--navbar-height);
+
+  display: flex;
+  align-items: center;
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  white-space: nowrap;
+
+  transition: color 0.15s ease;
+}
+
+.desktop-links a:hover {
+  color: var(--blue);
+}
+
+.desktop-links a.active {
+  color: var(--blue);
+}
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-badge {
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 4px;
+
+  cursor: pointer;
+}
+
+.avatar-ring {
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f2f2f2;
+
+  color: var(--blue);
+
+  border: 1px solid var(--border);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  flex-shrink: 0;
+}
+
+.user-id {
+  max-width: 100px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* =========================================
+   PROFILE DROPDOWN
+========================================= */
+
+.profile-dropdown-card {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  width: 160px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 4px;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.12);
+
+  padding: 6px;
+
+  z-index: 2000;
+}
+
+.profile-dropdown-card a,
+.logout-btn {
+  width: 100%;
+
+  display: block;
+
+  padding: 10px 11px;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: transparent;
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  text-align: left;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.profile-dropdown-card a:hover,
+.logout-btn:hover {
+  background: #f6f6f6;
+
+  color: var(--blue);
+}
+
+.logout-btn {
+  color: var(--red);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  :root {
+    --navbar-height: 56px;
+  }
+
+  .navbar-container {
+    height: var(--navbar-height);
+  }
+
+  .logo-link {
+    width: 48px;
+  }
+
+  .navbar-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .indices-panel {
+    padding-left: 8px;
+    gap: 10px;
+  }
+
+  .index-name,
+  .index-val {
+    font-size: 11px;
+  }
+
+  .navbar-right {
+    padding: 0 12px;
+  }
+
+  /* No second navbar */
+  .desktop-links {
+    display: none;
+  }
+
+  .navbar-divider {
+    display: none;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 52px;
+  }
+
+  .navbar-container {
+    height: var(--navbar-height);
+
+    overflow: hidden;
+  }
+
+  /* Hide logo on phone */
+  .logo-link {
+    display: none;
+  }
+
+  .navbar-left {
+    flex: 1;
+
+    min-width: 0;
+
+    padding-left: 10px;
+  }
+
+  /* ---------------------------------------
+     INDICES ALWAYS VISIBLE
+  --------------------------------------- */
+
+  .indices-panel {
+    width: 100%;
+
+    display: flex;
+
+    gap: 8px;
+
+    padding: 0;
+
+    overflow: hidden;
+  }
+
+  .index-pill {
+    min-width: 0;
+
+    gap: 4px;
+
+    flex-shrink: 1;
+  }
+
+  .index-name {
+    display: inline-block;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    color: var(--text);
+  }
+
+  .index-val {
+    display: inline-block;
+
+    font-size: 9px;
+    font-weight: 500;
+  }
+
+  .index-divider {
+    height: 18px;
+  }
+
+  /* ---------------------------------------
+     RIGHT
+  --------------------------------------- */
+
+  .navbar-right {
+    gap: 4px;
+
+    padding: 0 7px 0 4px;
+  }
+
+  .profile-wrapper {
+    flex-shrink: 0;
+  }
+
+  .profile-badge {
+    gap: 4px;
+
+    padding: 2px;
+  }
+
+  .avatar-ring {
+    width: 27px;
+    height: 27px;
+
+    font-size: 9px;
+  }
+
+  .user-id {
+    display: block;
+
+    max-width: 55px;
+
+    font-size: 9px;
+  }
+
+  /* Never show desktop navigation */
+  .desktop-links {
+    display: none;
+  }
+
+  .navbar-divider {
+    display: none;
+  }
+
+  .profile-dropdown-card {
+    top: calc(100% + 5px);
+    right: 4px;
+
+    width: 145px;
+  }
+}
+
+/* =========================================
+   VERY SMALL PHONE
+========================================= */
+
+@media (max-width: 360px) {
+  .navbar-left {
+    padding-left: 7px;
+  }
+
+  .indices-panel {
+    gap: 5px;
+  }
+
+  .index-pill {
+    gap: 3px;
+  }
+
+  .index-name,
+  .index-val {
+    font-size: 8px;
+  }
+
+  .navbar-right {
+    padding-right: 5px;
+  }
+
+  .user-id {
+    max-width: 42px;
+
+    font-size: 8px;
+  }
+
+  .avatar-ring {
+    width: 25px;
+    height: 25px;
+  }
+}

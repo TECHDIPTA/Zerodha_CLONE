@@ -1,0 +1,1239 @@
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+:root {
+  --kite-blue: #387ed1;
+  --kite-blue-dark: #2f6fbb;
+  --kite-green: #4caf50;
+  --kite-red: #df514c;
+
+  --text-primary: #424242;
+  --text-secondary: #777;
+  --text-muted: #9b9b9b;
+
+  --border: #eeeeee;
+  --border-light: #f4f4f4;
+
+  --surface: #ffffff;
+  --surface-soft: #fafafa;
+
+  --sidebar-width: clamp(280px, 28vw, 400px);
+
+  --navbar-height: 60px;
+  --bottom-nav-height: 58px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    sans-serif;
+
+  color: var(--text-primary);
+  background: #fff;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+code,
+pre {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+
+/* =========================================================
+   MAIN APP / DASHBOARD LAYOUT
+   ========================================================= */
+
+.kite-app-layout {
+  width: 100%;
+  min-height: 100vh;
+
+  display: block;
+
+  background: #fff;
+
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+
+/* =========================================================
+   DASHBOARD AREA
+   ========================================================= */
+
+.dashboard-container {
+  width: 100%;
+  min-height: calc(100vh - var(--navbar-height));
+
+  display: flex;
+  align-items: stretch;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   LEFT WATCHLIST
+   DESKTOP: fixed sidebar, sticky, scrolls independently
+   ========================================================= */
+
+.watchlist-pane {
+  flex: 0 0 var(--sidebar-width);
+
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+
+  height: calc(100vh - var(--navbar-height));
+
+  position: sticky;
+  top: var(--navbar-height);
+
+  align-self: flex-start;
+
+  background: #fff;
+
+  border-right: 1px solid var(--border);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+}
+
+.watchlist-pane::-webkit-scrollbar {
+  width: 6px;
+}
+
+.watchlist-pane::-webkit-scrollbar-thumb {
+  background: #d8d8d8;
+  border-radius: 10px;
+}
+
+.watchlist-pane::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.content-pane {
+  flex: 1 1 auto;
+
+  width: auto;
+  min-width: 0;
+
+  min-height: calc(100vh - var(--navbar-height));
+
+  background: #fff;
+
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+
+/* =========================================================
+   LEGACY PAGE CONTAINERS
+   ========================================================= */
+
+.content {
+  width: 100%;
+  min-height: 100%;
+
+  padding: 40px 5%;
+
+  overflow: visible;
+}
+
+.orders {
+  width: 100%;
+  min-height: 100%;
+
+  padding: 40px 5%;
+
+  overflow: visible;
+}
+
+.title {
+  margin: 0 0 28px;
+
+  font-size: 1.35rem;
+  line-height: 1.4;
+  font-weight: 400;
+
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 18px;
+
+  border-radius: 3px;
+
+  color: #fff;
+  text-decoration: none;
+
+  border: 1px solid transparent;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-blue {
+  background: var(--kite-blue);
+}
+
+.btn-blue:hover {
+  background: var(--kite-blue-dark);
+}
+
+.btn-green {
+  background: var(--kite-green);
+}
+
+.btn-green:hover {
+  background: #429b46;
+}
+
+
+/* =========================================================
+   FUNDS / SUMMARY LEGACY SUPPORT
+   ========================================================= */
+
+.funds {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+}
+
+.funds p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.8rem;
+}
+
+.row {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-top: 32px;
+}
+
+.col {
+  flex: 1 1 0;
+  min-width: 0;
+
+  text-align: left;
+}
+
+.col h5 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 1.8rem;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.col h5 span {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.col p {
+  margin: 8px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.row .col:last-child h5 {
+  color: var(--kite-green);
+}
+
+.table {
+  width: 100%;
+
+  border: 1px solid var(--border);
+
+  padding: 28px 32px;
+
+  background: #fff;
+}
+
+.table .data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+.table .data > * {
+  margin-bottom: 18px;
+}
+
+.table .data p:first-child {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.imp {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.colored {
+  color: var(--kite-blue);
+}
+
+.table hr {
+  border: 0;
+
+  height: 1px;
+
+  margin: 0 0 18px;
+
+  background: var(--border);
+}
+
+.commodity {
+  padding: 20px 32px;
+
+  text-align: center;
+}
+
+.commodity p {
+  margin-bottom: 24px;
+
+  color: #c1c1c1;
+}
+
+
+/* =========================================================
+   ORDERS TABLE
+   ========================================================= */
+
+.order-table {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.order-table table {
+  width: 100%;
+  min-width: 680px;
+
+  border-collapse: collapse;
+}
+
+.order-table tr {
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.order-table th {
+  padding: 13px 12px;
+
+  text-align: right;
+
+  color: var(--text-muted);
+
+  font-size: 0.78rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.order-table td {
+  padding: 12px;
+
+  text-align: right;
+
+  color: #494949;
+
+  font-size: 0.88rem;
+  font-weight: 400;
+
+  white-space: nowrap;
+}
+
+.order-table tr th:first-child,
+.order-table tr td:first-child {
+  text-align: left;
+}
+
+.order-table tr th:nth-child(1),
+.order-table tr th:nth-child(4),
+.order-table tr td:nth-child(1),
+.order-table tr td:nth-child(4) {
+  border-right: 1px solid var(--border-light);
+}
+
+.order-table tr td:last-child {
+  font-size: 0.72rem;
+}
+
+.order-table td.profit {
+  color: var(--kite-green);
+}
+
+.order-table td.loss {
+  color: var(--kite-red);
+}
+
+.align-left {
+  text-align: left !important;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.no-orders {
+  min-height: 55vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.no-orders .icon {
+  transform: scale(3);
+
+  color: #b5b5b5;
+}
+
+.no-orders p {
+  margin: 36px 0 0;
+
+  color: #a6a6a6;
+
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   OLD TOPBAR SUPPORT
+   ========================================================= */
+
+.topbar-container {
+  width: 100%;
+  height: var(--navbar-height);
+
+  display: flex;
+  align-items: center;
+
+  background: #fff;
+
+  border-bottom: 1px solid var(--border);
+
+  box-shadow: none;
+
+  z-index: 9;
+}
+
+.indices-container {
+  flex: 0 0 var(--sidebar-width);
+
+  width: var(--sidebar-width);
+  height: 100%;
+
+  padding: 0 20px;
+
+  border-right: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nifty,
+.sensex {
+  flex: 1 1 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.index {
+  color: #666;
+
+  font-size: 0.78rem;
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.index-points {
+  color: var(--kite-red);
+
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.percent {
+  color: var(--text-muted);
+
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   OLD MENU SUPPORT
+   ========================================================= */
+
+.menu-container {
+  flex: 1;
+
+  width: auto;
+  height: 100%;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 30px;
+  height: 20px;
+
+  object-fit: contain;
+}
+
+.menus {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.menus ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.menus li {
+  display: inline-block;
+
+  margin-right: 26px;
+}
+
+.menu {
+  color: #555;
+
+  font-size: 0.82rem;
+  font-weight: 400;
+
+  text-decoration: none;
+
+  transition: color 0.15s ease;
+}
+
+.menu:hover,
+.menu.selected {
+  color: var(--kite-blue);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+
+  margin-left: 10px;
+}
+
+.profile .avatar {
+  width: 30px;
+  height: 30px;
+
+  margin-right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #9c27b0;
+  background: #fce5fc;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.profile .username {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.profile:hover {
+  cursor: pointer;
+}
+
+.profile:hover .username {
+  color: var(--kite-blue);
+}
+
+
+/* =========================================================
+   WATCHLIST (legacy .list/.item classes — unused by current
+   WatchList.jsx, kept in case other code references them)
+   ========================================================= */
+
+.search-container {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
+
+  flex: 0 0 48px;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid var(--border);
+
+  background: #fff;
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 58px 0 16px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #333;
+
+  font-size: 0.82rem;
+  font-weight: 400;
+}
+
+.search::placeholder {
+  color: #aaa;
+}
+
+.search:focus {
+  box-shadow: inset 0 -1px 0 var(--kite-blue);
+}
+
+.counts {
+  position: absolute;
+
+  right: 15px;
+
+  color: #999;
+
+  font-size: 0.72rem;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+.list {
+  flex: 0 0 auto;
+
+  width: 100%;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  position: relative;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid var(--border-light);
+
+  cursor: pointer;
+
+  background: #fff;
+
+  transition: background-color 0.12s ease;
+}
+
+.list li:hover {
+  background: #fafafa;
+}
+
+.item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  font-size: 0.8rem;
+
+  position: relative;
+}
+
+.item p {
+  margin: 0;
+
+  color: #424242;
+
+  font-weight: 500;
+
+  letter-spacing: 0.1px;
+
+  white-space: nowrap;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.itemInfo .percent {
+  min-width: 48px;
+
+  text-align: right;
+}
+
+.itemInfo .price {
+  min-width: 68px;
+
+  text-align: right;
+
+  color: #424242;
+
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.itemInfo svg {
+  width: 16px;
+  height: 16px;
+}
+
+.down {
+  color: var(--kite-red) !important;
+}
+
+.up {
+  color: var(--kite-green) !important;
+}
+
+.actions {
+  position: absolute;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-right: 10px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  z-index: 2;
+}
+
+.list li:hover > .actions {
+  display: flex;
+}
+
+.actions > span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+.actions button {
+  min-width: 38px;
+  height: 28px;
+
+  padding: 0 8px;
+
+  border-radius: 3px;
+
+  border: 1px solid transparent;
+
+  outline: 0;
+
+  cursor: pointer;
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.actions .buy {
+  color: #fff;
+
+  background: var(--kite-blue);
+
+  border-color: var(--kite-blue);
+}
+
+.actions .buy:hover {
+  background: var(--kite-blue-dark);
+}
+
+.actions .sell {
+  color: #fff;
+
+  background: var(--kite-red);
+
+  border-color: var(--kite-red);
+}
+
+.actions .sell:hover {
+  background: #ca403b;
+}
+
+.actions .action {
+  min-width: 30px;
+  width: 30px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #555;
+
+  background: #fff;
+
+  border-color: #ddd;
+}
+
+.actions .action:hover {
+  background: #f3f3f3;
+}
+
+.actions .icon {
+  width: 17px;
+  height: 17px;
+
+  color: #555;
+
+  transform: none;
+}
+
+.watchlist-number {
+  position: static;
+
+  width: 100%;
+  height: auto;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+
+  border: 0;
+
+  border-top: 1px solid var(--border);
+
+  background: #fff;
+}
+
+.watchlist-number ul {
+  width: 100%;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.watchlist-number ul li {
+  display: inline-flex;
+
+  padding: 10px 16px;
+
+  border-right: 1px solid var(--border);
+
+  font-size: 0.72rem;
+}
+
+.watchlist-number ul li:hover {
+  color: var(--kite-blue);
+
+  background: #fafafa;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   GENERIC SETTINGS / ICONS
+   ========================================================= */
+
+.settings {
+  transform: none;
+
+  color: #696969;
+}
+
+.settings:hover {
+  cursor: pointer;
+
+  color: var(--kite-blue);
+}
+
+.section-icon {
+  margin: 0 10px 0 0;
+
+  padding: 0;
+
+  color: #707070;
+
+  transform: scale(0.8);
+}
+
+
+/* =========================================================
+   TABLET
+   Watchlist becomes a full-width block ABOVE the page
+   content instead of a fixed sidebar. Buy/Sell stays
+   visible via WatchList.css hover/touch rules.
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+  :root {
+    --navbar-height: 56px;
+    --sidebar-width: 320px;
+  }
+
+  .dashboard-container {
+    width: 100%;
+
+    min-height: calc(100vh - var(--navbar-height));
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: visible;
+  }
+
+  .watchlist-pane {
+    display: block;
+
+    position: static;
+    top: auto;
+
+    width: 100%;
+    min-width: 0;
+
+    height: auto;
+    max-height: none;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+
+    overflow: visible;
+  }
+
+  .content-pane {
+    width: 100%;
+    min-width: 0;
+
+    min-height: calc(100vh - var(--navbar-height));
+
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .content {
+    padding: 32px 4%;
+  }
+
+  .orders {
+    padding: 32px 4%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  :root {
+    --navbar-height: 52px;
+    --bottom-nav-height: 58px;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .kite-app-layout {
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+
+    display: block;
+
+    padding-top: 0;
+    padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    height: auto;
+
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: static;
+
+    overflow: visible;
+  }
+
+  .watchlist-pane {
+    display: block;
+
+    position: static;
+
+    width: 100%;
+    min-width: 0;
+
+    height: auto;
+
+    border-bottom: 1px solid var(--border);
+
+    overflow: visible;
+  }
+
+  .content-pane {
+    position: static;
+
+    width: 100%;
+
+    height: auto;
+    min-height: 0;
+
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    padding-bottom: 20px;
+  }
+
+  .content {
+    width: 100%;
+
+    padding: 24px 18px;
+  }
+
+  .orders {
+    width: 100%;
+
+    padding: 24px 18px;
+  }
+
+  .row {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 18px;
+  }
+
+  .col {
+    width: 100%;
+  }
+
+  .table .data {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .topbar-container {
+    height: var(--navbar-height);
+
+    min-height: var(--navbar-height);
+  }
+
+  .indices-container {
+    flex-basis: auto;
+
+    width: auto;
+
+    border-right: 0;
+    border-bottom: 0;
+
+    padding: 0 16px;
+  }
+
+  .menu-container {
+    padding: 0 16px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .kite-app-layout {
+    padding-top: 0;
+
+    padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  }
+
+  .content,
+  .orders {
+    padding: 18px 12px !important;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .order-table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+}

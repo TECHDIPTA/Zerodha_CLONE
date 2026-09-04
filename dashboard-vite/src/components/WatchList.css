@@ -1,0 +1,962 @@
+/* =========================================================
+   WATCHLIST
+========================================================= */
+
+.watchlist-container {
+  --primary: #387ed1;
+  --green: #4caf50;
+  --red: #df514c;
+  --border: #e6e6e6;
+  --muted: #9b9b9b;
+  --text: #424242;
+
+  width: 100%;
+
+  height: auto;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+
+  border-right: 1px solid var(--border);
+
+  box-sizing: border-box;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   SEARCH
+   Desktop optimized so complete watchlist fits better
+========================================================= */
+
+.watchlist-search {
+  height: clamp(46px, 6vh, 52px);
+  flex: 0 0 clamp(46px, 6vh, 52px);
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 14px;
+
+  border-bottom: 1px solid var(--border);
+
+  box-sizing: border-box;
+}
+
+.search-box {
+  position: relative;
+
+  width: 100%;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #dedede;
+  border-radius: 3px;
+
+  background: #fff;
+
+  transition: border-color 0.15s ease;
+}
+
+.search-box:focus-within {
+  border-color: #b9b9b9;
+}
+
+.search-icon {
+  width: 34px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 20px;
+
+  color: #777;
+
+  transform: rotate(-20deg);
+}
+
+.search-box input {
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  font-size: 12px;
+  color: #424242;
+
+  min-width: 0;
+}
+
+.search-box input::placeholder {
+  color: #a6a6a6;
+}
+
+.search-count {
+  padding-right: 10px;
+
+  font-size: 11px;
+
+  color: #999;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   WATCHLIST LIST
+   No internal scrolling here.
+========================================================= */
+
+.watchlist-list {
+  flex: 0 0 auto;
+
+  width: 100%;
+
+  height: auto;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  scrollbar-width: none;
+}
+
+.watchlist-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+
+/* =========================================================
+   STOCK ROW
+   Responsive desktop height so all 9 stocks fit better.
+========================================================= */
+
+.watchlist-item {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    Responsive height:
+    - smaller on short screens
+    - slightly larger on taller screens
+  */
+  height: clamp(36px, 5.2vh, 46px);
+
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid #f2f2f2;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  background: #fff;
+
+  transition:
+    background-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.watchlist-item:hover {
+  background: #fafafa;
+
+  box-shadow:
+    inset 2px 0 0 var(--primary);
+}
+
+
+/* =========================================================
+   NORMAL STOCK VIEW
+========================================================= */
+
+.watchlist-normal {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 0;
+}
+
+.stock-left {
+  min-width: 0;
+
+  overflow: hidden;
+}
+
+.stock-name {
+  display: block;
+
+  font-size: clamp(11px, 1.55vh, 13px);
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.stock-right {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  flex: 0 0 auto;
+}
+
+.stock-percent {
+  width: 52px;
+
+  text-align: right;
+
+  font-size: clamp(9px, 1.4vh, 11px);
+
+  color: #888;
+}
+
+.stock-arrow {
+  width: 16px !important;
+  height: 16px !important;
+
+  flex-shrink: 0;
+}
+
+.stock-price {
+  width: 68px;
+
+  text-align: right;
+
+  font-size: clamp(10px, 1.5vh, 12px);
+
+  font-weight: 500;
+
+  color: #424242;
+}
+
+
+/* =========================================================
+   GREEN / RED
+========================================================= */
+
+.up {
+  color: var(--green) !important;
+}
+
+.down {
+  color: var(--red) !important;
+}
+
+
+/* =========================================================
+   BUY / SELL ACTIONS
+========================================================= */
+
+.watchlist-actions {
+  position: absolute;
+
+  inset: 0;
+
+  padding: 0 14px;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 5px;
+
+  background: #fff;
+
+  z-index: 2;
+}
+
+.watchlist-item:hover .watchlist-actions {
+  display: flex;
+}
+
+.watchlist-actions button {
+  width: clamp(28px, 3.5vh, 30px);
+  height: clamp(24px, 3.5vh, 26px);
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  border-radius: 3px;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  transition:
+    background-color 0.12s ease,
+    transform 0.08s ease;
+}
+
+.watchlist-actions button:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   BUY
+========================================================= */
+
+.action-buy {
+  color: #fff;
+
+  background: #387ed1;
+}
+
+.action-buy:hover {
+  background: #2f70bd;
+}
+
+
+/* =========================================================
+   SELL
+========================================================= */
+
+.action-sell {
+  color: #fff;
+
+  background: #df514c;
+}
+
+.action-sell:hover {
+  background: #cc4742;
+}
+
+
+/* =========================================================
+   OTHER ACTIONS
+========================================================= */
+
+.action-icon {
+  background: #f2f2f2;
+
+  color: #555;
+}
+
+.action-icon:hover {
+  background: #e5e5e5;
+}
+
+.action-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-watchlist {
+  height: 100px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   MARKET OVERVIEW / CHART
+   Responsive height based on viewport.
+========================================================= */
+
+.watchlist-chart {
+  width: 100%;
+
+  /*
+    Main desktop optimization.
+
+    Short screen:
+      ~220px
+
+    Normal screen:
+      ~240-260px
+
+    Tall screen:
+      max ~280px
+  */
+  height: clamp(220px, 35vh, 280px);
+
+  flex: 0 0 clamp(220px, 35vh, 280px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  border-top: 1px solid #e6e6e6;
+
+  background: #fff;
+
+  box-sizing: border-box;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   CHART TITLE
+========================================================= */
+
+.chart-title {
+  width: 100%;
+
+  height: clamp(36px, 5vh, 40px);
+
+  flex: 0 0 clamp(36px, 5vh, 40px);
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 14px;
+
+  border-bottom: 1px solid #f0f0f0;
+
+  box-sizing: border-box;
+}
+
+.chart-title span {
+  font-size: clamp(10px, 1.4vh, 11px);
+
+  font-weight: 500;
+
+  color: #777;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   CHART WRAPPER
+========================================================= */
+
+.chart-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    The wrapper fills the remaining chart area.
+  */
+  height: calc(
+    clamp(220px, 35vh, 280px)
+    -
+    clamp(36px, 5vh, 40px)
+  );
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 6px 10px 10px;
+
+  box-sizing: border-box;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   CHART CANVAS
+========================================================= */
+
+.chart-wrapper canvas {
+  max-width: 100% !important;
+
+  max-height: 100% !important;
+
+  width: auto !important;
+}
+
+
+/* =========================================================
+   DESKTOP SHORT SCREEN OPTIMIZATION
+   Example: laptop with 600-750px viewport height
+========================================================= */
+
+@media (min-width: 1025px) and (max-height: 750px) {
+
+  .watchlist-search {
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .watchlist-item {
+    height: 37px;
+  }
+
+  .stock-name {
+    font-size: 11px;
+  }
+
+  .stock-percent {
+    width: 48px;
+    font-size: 9px;
+  }
+
+  .stock-price {
+    width: 64px;
+    font-size: 10px;
+  }
+
+  .watchlist-actions {
+    padding: 0 12px;
+
+    gap: 4px;
+  }
+
+  .watchlist-actions button {
+    width: 27px;
+    height: 23px;
+
+    font-size: 10px;
+  }
+
+  .watchlist-chart {
+    height: 230px;
+    flex-basis: 230px;
+  }
+
+  .chart-title {
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .chart-wrapper {
+    height: 196px;
+    flex-basis: 196px;
+
+    padding: 4px 8px 8px;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP VERY TALL SCREEN
+========================================================= */
+
+@media (min-width: 1025px) and (min-height: 900px) {
+
+  .watchlist-item {
+    height: 42px;
+  }
+
+  .watchlist-chart {
+    height: 270px;
+    flex-basis: 270px;
+  }
+
+  .chart-title {
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .chart-wrapper {
+    height: 230px;
+    flex-basis: 230px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   769px - 1024px
+
+   IMPORTANT:
+   No independent scrolling.
+========================================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .watchlist-container {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    border-right: 0;
+
+    overflow: visible;
+  }
+
+  .watchlist-list {
+    width: 100%;
+
+    height: auto;
+
+    max-height: none;
+
+    overflow: visible;
+  }
+
+  .watchlist-item {
+    height: 48px;
+
+    padding: 0 14px;
+  }
+
+  .stock-name {
+    font-size: 13px;
+  }
+
+  .stock-percent {
+    width: 50px;
+
+    font-size: 11px;
+  }
+
+  .stock-price {
+    width: 68px;
+
+    font-size: 12px;
+  }
+
+  .watchlist-actions button {
+    width: 32px;
+
+    height: 27px;
+  }
+
+  .watchlist-chart {
+    width: 100%;
+
+    height: 300px;
+
+    flex-basis: 300px;
+
+    overflow: visible;
+  }
+
+  .chart-title {
+    height: 42px;
+
+    flex-basis: 42px;
+  }
+
+  .chart-wrapper {
+    height: 258px;
+
+    flex-basis: 258px;
+
+    padding: 8px 20px 14px;
+
+    overflow: visible;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   <= 768px
+
+   One continuous page scroll.
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .watchlist-container {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    border-right: 0;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     SEARCH
+  ------------------------------------------------------- */
+
+  .watchlist-search {
+    height: 54px;
+
+    flex: 0 0 54px;
+
+    padding: 0 14px;
+  }
+
+
+  /* -------------------------------------------------------
+     LIST
+  ------------------------------------------------------- */
+
+  .watchlist-list {
+    width: 100%;
+
+    height: auto;
+
+    max-height: none;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     STOCK ROW
+  ------------------------------------------------------- */
+
+  .watchlist-item {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 10px 16px;
+
+    gap: 6px;
+  }
+
+  .watchlist-normal {
+    width: 100%;
+  }
+
+  .stock-name {
+    font-size: 13px;
+  }
+
+  .stock-percent {
+    width: 52px;
+
+    font-size: 11px;
+  }
+
+  .stock-price {
+    width: 70px;
+
+    font-size: 12px;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE ACTIONS
+     Always visible.
+  ------------------------------------------------------- */
+
+  .watchlist-actions {
+    position: static;
+
+    display: flex !important;
+
+    width: 100%;
+
+    padding: 0;
+
+    justify-content: flex-end;
+
+    background: transparent;
+
+    z-index: auto;
+  }
+
+  .watchlist-actions button {
+    width: 34px;
+
+    height: 29px;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE CHART
+  ------------------------------------------------------- */
+
+  .watchlist-chart {
+    width: 100%;
+
+    height: 300px;
+
+    flex: 0 0 300px;
+
+    overflow: visible;
+  }
+
+  .chart-title {
+    height: 42px;
+
+    flex: 0 0 42px;
+  }
+
+  .chart-wrapper {
+    width: 100%;
+
+    height: 258px;
+
+    flex: 0 0 258px;
+
+    padding: 8px 20px 14px;
+
+    overflow: visible;
+  }
+
+  .chart-wrapper canvas {
+    max-width: 100% !important;
+
+    max-height: 100% !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   <= 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .watchlist-item {
+    height: auto;
+
+    padding: 9px 13px;
+  }
+
+  .stock-percent {
+    width: 48px;
+  }
+
+  .stock-price {
+    width: 66px;
+  }
+
+  .watchlist-actions button {
+    width: 32px;
+
+    height: 28px;
+  }
+
+  .watchlist-chart {
+    height: 290px;
+
+    flex-basis: 290px;
+
+    overflow: visible;
+  }
+
+  .chart-wrapper {
+    height: 248px;
+
+    flex-basis: 248px;
+
+    padding: 6px 14px 12px;
+
+    overflow: visible;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   <= 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .watchlist-item {
+    height: auto;
+
+    padding: 8px 10px;
+  }
+
+  .stock-name {
+    font-size: 12px;
+  }
+
+  .stock-percent {
+    width: 43px;
+
+    font-size: 10px;
+  }
+
+  .stock-price {
+    width: 62px;
+
+    font-size: 11px;
+  }
+
+  .watchlist-actions {
+    gap: 3px;
+  }
+
+  .watchlist-actions button {
+    width: 29px;
+
+    height: 26px;
+
+    font-size: 10px;
+  }
+
+  .watchlist-chart {
+    height: 275px;
+
+    flex-basis: 275px;
+
+    overflow: visible;
+  }
+
+  .chart-wrapper {
+    height: 233px;
+
+    flex-basis: 233px;
+
+    padding: 4px 10px 10px;
+
+    overflow: visible;
+  }
+}
