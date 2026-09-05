@@ -1236,4 +1236,17 @@ pre {
     overflow-x: auto;
     overflow-y: visible;
   }
+}/* =========================================================
+   MOBILE BOTTOM NAV WRAPPER
+   Hidden on desktop, available only on mobile
+========================================================= */
+
+.mobile-bottom-nav-wrapper {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-bottom-nav-wrapper {
+    display: block;
+  }
 }
