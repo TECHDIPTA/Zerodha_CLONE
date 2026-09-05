@@ -111,9 +111,7 @@ const Navbar = () => {
       // Logout destroys the server session.
       // Only NOW do we leave the dashboard.
 
-      window.location.replace(
-        `${AUTH_CLIENT_URL}/home`
-      );
+      window.location.replace(AUTH_CLIENT_URL);
     } catch (error) {
       console.error(
         "Logout failed:",
