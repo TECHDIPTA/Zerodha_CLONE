@@ -8,7 +8,7 @@ import React, {
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 
-import NavBar from "./NavBar";
+import Navbar from "./Navbar";
 import BottomNav from "./BottomNav";
 import Apps from "./Apps";
 import Funds from "./Funds";
@@ -628,7 +628,7 @@ const Dashboard = () => {
             NAVBAR
         ================================================= */}
 
-        <NavBar />
+        <Navbar />
 
 
         {/* =================================================

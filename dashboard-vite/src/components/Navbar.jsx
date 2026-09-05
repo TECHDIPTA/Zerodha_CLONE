@@ -14,9 +14,7 @@ import {
 import axios from "axios";
 
 import GeneralContext from "./GeneralContext";
-
-import "./NavBar.css";
-
+import "./Navbar.css";
 const API_BASE_URL =
   import.meta.env.VITE_API_URL ||
   "http://localhost:3002";
@@ -52,7 +50,7 @@ const navItems = [
   },
 ];
 
-const NavBar = () => {
+const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] =
     useState(false);
 
@@ -286,5 +284,5 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
 
