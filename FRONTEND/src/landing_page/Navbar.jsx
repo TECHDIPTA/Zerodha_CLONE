@@ -37,7 +37,6 @@ function Navbar() {
         "logoutSuccessMessage"
       );
 
-      // Small delay so Navbar is fully mounted
       setTimeout(() => {
         toast.success(logoutMessage);
       }, 300);
@@ -59,12 +58,6 @@ function Navbar() {
   const handleDashboard = () => {
     closeNavbar();
 
-    /*
-      Dashboard does NOT logout the user.
-
-      The existing session remains active.
-    */
-
     window.location.href = DASHBOARD_URL;
   };
 
@@ -75,14 +68,15 @@ function Navbar() {
   const handleLogout = async () => {
     closeNavbar();
 
-    const success = await logout();
+    try {
+      const success = await logout();
 
-    if (success) {
+      if (!success) {
+        return;
+      }
+
       /*
-        Store the success message BEFORE redirecting.
-
-        Navbar will read this after /home loads
-        and display the toast properly.
+        Save message before leaving the dashboard/auth page.
       */
 
       sessionStorage.setItem(
@@ -91,12 +85,23 @@ function Navbar() {
       );
 
       /*
-        User is now completely logged out.
+        IMPORTANT:
+        Do NOT use /home here.
 
-        Stay on authentication frontend.
+        Your Vercel deployment is returning:
+        GET /home -> 404
+
+        Send the user to the root of the authentication
+        frontend instead.
       */
 
-      window.location.href = "/home";
+      window.location.replace("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+
+      toast.error(
+        "Logout failed. Please try again."
+      );
     }
   };
 
@@ -197,9 +202,7 @@ function Navbar() {
               </Link>
             </li>
 
-            {/* =================================================
-                AUTHENTICATED USER
-            ================================================= */}
+            {/* AUTHENTICATED USER */}
 
             {isLoggedIn ? (
               <>
@@ -224,10 +227,6 @@ function Navbar() {
                 </li>
               </>
             ) : (
-              /* =================================================
-                 LOGGED OUT USER
-              ================================================= */
-
               isLoggedOut && (
                 <li>
                   <Link
@@ -652,7 +651,6 @@ function Navbar() {
                         viewBox="0 0 32 32"
                         className="edu-svg-icon"
                       >
-
                         <defs>
                           <linearGradient
                             id="varsityGrad"
@@ -695,7 +693,6 @@ function Navbar() {
                         >
                           V
                         </text>
-
                       </svg>
 
                       <span>
@@ -711,12 +708,10 @@ function Navbar() {
                       className="edu-link"
                       onClick={handlePlaceholderClick}
                     >
-
                       <svg
                         viewBox="0 0 32 32"
                         className="edu-svg-icon"
                       >
-
                         <rect
                           x="5"
                           y="5"
@@ -748,7 +743,6 @@ function Navbar() {
                         >
                           Q
                         </text>
-
                       </svg>
 
                       <span>
