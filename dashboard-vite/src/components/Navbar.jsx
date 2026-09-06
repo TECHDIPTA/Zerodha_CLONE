@@ -1,4 +1,3 @@
-
 import React, {
   useContext,
   useEffect,
@@ -15,6 +14,7 @@ import axios from "axios";
 
 import GeneralContext from "./GeneralContext";
 import "./Navbar.css";
+
 const API_BASE_URL =
   import.meta.env.VITE_API_URL ||
   "http://localhost:3002";
@@ -54,16 +54,14 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] =
     useState(false);
 
-  const {
-    user,
-    showToast,
-  } = useContext(GeneralContext);
+  const { user, showToast } =
+    useContext(GeneralContext);
 
   const dropdownRef = useRef(null);
 
-  // ==========================================
+  // =====================================================
   // CLOSE DROPDOWN WHEN CLICKING OUTSIDE
-  // ==========================================
+  // =====================================================
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -88,9 +86,9 @@ const Navbar = () => {
     };
   }, []);
 
-  // ==========================================
+  // =====================================================
   // LOGOUT
-  // ==========================================
+  // =====================================================
 
   const handleLogout = async () => {
     try {
@@ -107,11 +105,11 @@ const Navbar = () => {
         "success"
       );
 
-      // IMPORTANT:
-      // Logout destroys the server session.
-      // Only NOW do we leave the dashboard.
+      setDropdownOpen(false);
 
-      window.location.replace(AUTH_CLIENT_URL);
+      window.location.replace(
+        AUTH_CLIENT_URL
+      );
     } catch (error) {
       console.error(
         "Logout failed:",
@@ -125,21 +123,25 @@ const Navbar = () => {
     }
   };
 
-  // ==========================================
+  // =====================================================
   // USER INITIALS
-  // ==========================================
+  // =====================================================
 
   const initials =
     user?.username
       ?.slice(0, 2)
       .toUpperCase() || "ZU";
 
+  // =====================================================
+  // NAVBAR
+  // =====================================================
+
   return (
     <header className="navbar-container">
 
-      {/* ================================
-          LEFT
-      ================================= */}
+      {/* =================================================
+          LEFT SIDE
+      ================================================= */}
 
       <div className="navbar-left">
 
@@ -187,16 +189,24 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* =================================================
+          DIVIDER
+      ================================================= */}
+
       <div
         className="navbar-divider"
         aria-hidden="true"
       />
 
-      {/* ================================
-          RIGHT
-      ================================= */}
+      {/* =================================================
+          RIGHT SIDE
+      ================================================= */}
 
       <div className="navbar-right">
+
+        {/* =================================================
+            DESKTOP NAVIGATION
+        ================================================= */}
 
         <nav className="desktop-links">
 
@@ -217,14 +227,15 @@ const Navbar = () => {
 
         </nav>
 
-        {/* ================================
+        {/* =================================================
             PROFILE
-        ================================= */}
+        ================================================= */}
 
         <div
           className="profile-wrapper"
           ref={dropdownRef}
         >
+
           <button
             type="button"
             className="profile-badge"
@@ -234,7 +245,9 @@ const Navbar = () => {
               )
             }
             aria-expanded={dropdownOpen}
+            aria-haspopup="menu"
           >
+
             <div className="avatar-ring">
               {initials}
             </div>
@@ -242,45 +255,87 @@ const Navbar = () => {
             <span className="user-id">
               {user?.username || "USERID"}
             </span>
+
+            <span
+              className={`profile-arrow ${
+                dropdownOpen
+                  ? "profile-arrow-open"
+                  : ""
+              }`}
+            >
+              ▾
+            </span>
+
           </button>
 
+          {/* =================================================
+              PROFILE DROPDOWN
+          ================================================= */}
+
           {dropdownOpen && (
-            <div className="profile-dropdown-card">
+            <div
+              className="profile-dropdown-card"
+              role="menu"
+            >
 
               <Link
                 to="/profile"
+                role="menuitem"
                 onClick={() =>
                   setDropdownOpen(false)
                 }
               >
-                My Profile
+                <span className="dropdown-icon">
+                  👤
+                </span>
+
+                <span>
+                  My Profile
+                </span>
               </Link>
 
               <Link
                 to="/settings"
+                role="menuitem"
                 onClick={() =>
                   setDropdownOpen(false)
                 }
               >
-                Settings
+                <span className="dropdown-icon">
+                  ⚙
+                </span>
+
+                <span>
+                  Settings
+                </span>
               </Link>
+
+              <div className="dropdown-separator" />
 
               <button
                 type="button"
                 className="logout-btn"
+                role="menuitem"
                 onClick={handleLogout}
               >
-                Logout
+                <span className="dropdown-icon">
+                  ↪
+                </span>
+
+                <span>
+                  Logout
+                </span>
               </button>
 
             </div>
           )}
+
         </div>
 
       </div>
+
     </header>
   );
 };
 
 export default Navbar;
-
