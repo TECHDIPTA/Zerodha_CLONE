@@ -1,280 +1,88 @@
-
-Buyactionwindow · CSS
-/* =========================================================
-   BUY / SELL WINDOW  (shared by BuyActionWindow + SellActionWindow)
-   Scoped by ID so any global ".container" cannot override it.
-========================================================= */
- 
-#buy-window,
-#sell-window {
+.container {
   --radius: 4px;
- 
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  left: auto;
- 
   width: 420px;
   max-width: 92vw;
- 
-  margin: 0;
-  padding: 0;
- 
   background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: var(--radius);
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
- 
-  /* above the bottom nav and the watchlist */
-  z-index: 10000;
- 
-  max-height: 90vh;
-  overflow-x: hidden;
-  overflow-y: auto;
- 
-  box-sizing: border-box;
+  border-radius: var(--radius);
+  border: 1px solid #e0e0e0;
+  z-index: 2000;
+  overflow: hidden;
 }
- 
+
 .regular-order {
   padding: 16px 20px;
   background-color: #fff;
 }
- 
+
 .inputs {
   display: flex;
   gap: 16px;
   margin-top: 8px;
 }
- 
+
 .inputs fieldset {
   flex: 1;
-  min-width: 0;
- 
-  margin: 0;
-  padding: 4px 10px;
- 
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin: 0;
+  padding: 4px 10px;
 }
- 
+
 .inputs fieldset legend {
-  padding: 0 4px;
- 
   font-size: 0.75rem;
   color: #777;
+  padding: 0 4px;
 }
- 
-.inputs fieldset input,
-.inputs fieldset select {
+
+.inputs fieldset input {
   width: 100%;
- 
-  padding: 4px 0;
- 
   border: none;
-  outline: none;
- 
-  background: transparent;
- 
   font-size: 1rem;
   font-weight: 500;
+  outline: none;
+  padding: 4px 0;
   color: #333;
 }
- 
-.inputs fieldset input:disabled,
-.inputs fieldset select:disabled {
-  color: #aaa;
-  cursor: not-allowed;
-}
- 
+
 .buttons {
+  background: #fbfbfb;
+  border-top: 1px solid #eeeeee;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
-  padding: 14px 20px;
- 
-  background: #fbfbfb;
-  border-top: 1px solid #eeeeee;
 }
- 
+
 .buttons span {
   font-size: 0.8rem;
   color: #666;
 }
- 
+
 .btn {
   padding: 8px 18px;
- 
-  border: none;
   border-radius: 3px;
- 
   font-size: 0.85rem;
   font-weight: 500;
- 
+  border: none;
   cursor: pointer;
 }
- 
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
- 
-.btn-blue {
-  background: #387ed1;
-  color: #fff;
-  margin-right: 6px;
-}
- 
-.btn-red {
-  background: #df514c;
-  color: #fff;
-  margin-right: 6px;
-}
- 
-.btn-grey {
-  background: #e0e0e0;
-  color: #555;
-}
- 
- 
-/* =========================================================
-   SELL WINDOW EXTRAS
-========================================================= */
- 
-.available-quantity {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
- 
-  margin-top: 12px;
- 
-  font-size: 0.8rem;
-  color: #666;
-}
- 
-.available-value {
-  color: #4caf50;
-}
- 
-.available-value.unavailable {
-  color: #df514c;
-}
- 
-.sell-warning {
-  margin-top: 10px;
-  padding: 8px 10px;
- 
-  border-radius: 3px;
- 
-  font-size: 0.78rem;
-  color: #b3261e;
-  background: #fdecea;
-}
- 
- 
-/* =========================================================
-   MOBILE + SMALL TABLET (<= 768px): BOTTOM SHEET
-   Full width, pinned to the bottom, ABOVE the bottom nav,
-   with the page dimmed behind it.
-========================================================= */
- 
-@media screen and (max-width: 768px) {
- 
-  #buy-window,
-  #sell-window {
-    left: 0;
+
+.btn-blue { background: #387ed1; color: #fff; margin-right: 6px; }
+.btn-red { background: #df514c; color: #fff; margin-right: 6px; }
+.btn-grey { background: #e0e0e0; color: #555; }
+
+/* Mobile Modal Dock */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100vw;
+    max-width: 100vw;
     right: 0;
     bottom: 0;
- 
-    width: 100%;
-    max-width: 100%;
- 
-    border: 0;
-    border-radius: 14px 14px 0 0;
- 
-    /* sheet shadow + dim overlay over the rest of the page */
-    box-shadow:
-      0 -4px 20px rgba(0, 0, 0, 0.15),
-      0 0 0 100vmax rgba(0, 0, 0, 0.35);
- 
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
- 
-  .regular-order {
-    padding: 16px;
-  }
- 
-  .buttons {
-    padding: 14px 16px;
-  }
- 
-  .btn {
-    padding: 11px 22px; /* bigger tap target */
-  }
- 
-  /* 16px stops iOS Safari from zooming in when an input is focused */
-  .inputs fieldset input,
-  .inputs fieldset select {
-    font-size: 16px;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   }
 }
- 
- 
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
- 
-@media screen and (max-width: 380px) {
- 
-  .inputs {
-    gap: 8px;
-  }
- 
-  .inputs fieldset {
-    padding: 4px 6px;
-  }
-}
-/* =========================================================
-   iPad mini / TABLET PORTRAIT (600px - 768px)
-   Centered bottom sheet instead of edge-to-edge
-========================================================= */
-
-@media screen and (min-width: 600px) and (max-width: 768px) {
-
-  #buy-window,
-  #sell-window {
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    margin: 0 auto;
-
-    width: 560px;
-    max-width: 100%;
-  }
-}
-
-
-/* =========================================================
-   TOUCH DEVICES (all iPads / phones)
-========================================================= */
-
-@media (hover: none) {
-
-  #buy-window,
-  #sell-window {
-    max-height: 90vh;
-    max-height: 90dvh;
-  }
-
-  /* 16px prevents the iOS auto-zoom when a field is focused */
-  .inputs fieldset input,
-  .inputs fieldset select {
-    font-size: 16px;
-  }
-
-  .btn {
-    min-height: 40px;
-  }
-}
- 
