@@ -234,4 +234,47 @@ Buyactionwindow · CSS
     padding: 4px 6px;
   }
 }
+/* =========================================================
+   iPad mini / TABLET PORTRAIT (600px - 768px)
+   Centered bottom sheet instead of edge-to-edge
+========================================================= */
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+
+  #buy-window,
+  #sell-window {
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: 0 auto;
+
+    width: 560px;
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES (all iPads / phones)
+========================================================= */
+
+@media (hover: none) {
+
+  #buy-window,
+  #sell-window {
+    max-height: 90vh;
+    max-height: 90dvh;
+  }
+
+  /* 16px prevents the iOS auto-zoom when a field is focused */
+  .inputs fieldset input,
+  .inputs fieldset select {
+    font-size: 16px;
+  }
+
+  .btn {
+    min-height: 40px;
+  }
+}
  
