@@ -25,60 +25,41 @@ import "./WatchList.css";
 ========================================================= */
 
 const WatchList = () => {
+  const { watchlist: liveWatchlist = [] } =
+    useContext(GeneralContext);
 
-  const {
-    watchlist: liveWatchlist = [],
-  } = useContext(
-    GeneralContext
-  );
-
-  const [
-    searchTerm,
-    setSearchTerm,
-  ] = useState("");
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
 
-  /* =======================================================
-     SEARCH
-  ======================================================= */
+  /* SEARCH */
 
-  const filteredWatchlist =
-    useMemo(() => {
+  const filteredWatchlist = useMemo(() => {
+    const query = searchTerm
+      .trim()
+      .toLowerCase();
 
-      const query =
-        searchTerm
-          .trim()
-          .toLowerCase();
+    if (!query) {
+      return liveWatchlist;
+    }
 
-      if (!query) {
-        return liveWatchlist;
-      }
-
-      return liveWatchlist.filter(
-        (stock) =>
-          stock.name
-            ?.toLowerCase()
-            .includes(query) ||
-          stock.symbol
-            ?.toLowerCase()
-            .includes(query)
-      );
-
-    }, [
-      searchTerm,
-      liveWatchlist,
-    ]);
-
-
-  /* =======================================================
-     CHART DATA
-  ======================================================= */
-
-  const labels =
-    liveWatchlist.map(
+    return liveWatchlist.filter(
       (stock) =>
         stock.name
+          ?.toLowerCase()
+          .includes(query) ||
+        stock.symbol
+          ?.toLowerCase()
+          .includes(query)
     );
+  }, [searchTerm, liveWatchlist]);
+
+
+  /* CHART DATA */
+
+  const labels = liveWatchlist.map(
+    (stock) => stock.name
+  );
 
   const chartData = {
     labels,
@@ -87,13 +68,10 @@ const WatchList = () => {
       {
         label: "Price",
 
-        data:
-          liveWatchlist.map(
-            (stock) =>
-              Number(
-                stock.price
-              ) || 0
-          ),
+        data: liveWatchlist.map(
+          (stock) =>
+            Number(stock.price) || 0
+        ),
 
         backgroundColor: [
           "rgba(56, 126, 209, 0.65)",
@@ -110,19 +88,14 @@ const WatchList = () => {
   };
 
 
-  /* =======================================================
-     RENDER
-  ======================================================= */
+  /* RENDER */
 
   return (
     <aside className="watchlist-container">
 
-      {/* =================================================
-          SEARCH
-      ================================================= */}
+      {/* SEARCH */}
 
       <div className="watchlist-search">
-
         <div className="search-box">
 
           <span className="search-icon">
@@ -134,85 +107,51 @@ const WatchList = () => {
             placeholder="Search eg: infy, bse, nifty"
             value={searchTerm}
             onChange={(e) =>
-              setSearchTerm(
-                e.target.value
-              )
+              setSearchTerm(e.target.value)
             }
           />
 
           <span className="search-count">
-            {
-              filteredWatchlist.length
-            }
-            /
-            {
-              liveWatchlist.length
-            }
+            {filteredWatchlist.length}/
+            {liveWatchlist.length}
           </span>
 
         </div>
-
       </div>
 
 
-      {/* =================================================
-          WATCHLIST
-      ================================================= */}
+      {/* LIST */}
 
       <div className="watchlist-list">
 
         {filteredWatchlist.length > 0 ? (
-
           filteredWatchlist.map(
             (stock, index) => (
-
               <WatchListItem
-                key={
-                  stock.name ||
-                  index
-                }
+                key={stock.name || index}
                 stock={stock}
               />
-
             )
           )
-
         ) : (
-
           <div className="empty-watchlist">
-
-            <span>
-              No stocks found
-            </span>
-
+            <span>No stocks found</span>
           </div>
-
         )}
 
       </div>
 
 
-      {/* =================================================
-          MARKET OVERVIEW
-      ================================================= */}
+      {/* MARKET OVERVIEW */}
 
       <div className="watchlist-chart">
 
         <div className="chart-title">
-
-          <span>
-            Market overview
-          </span>
-
+          <span>Market overview</span>
         </div>
 
-
         <div className="chart-wrapper">
-
-          <DoughnutChart
-            data={chartData}
-          />
-
+          <DoughnutChart data={chartData} />
         </div>
 
       </div>
@@ -226,27 +165,34 @@ export default WatchList;
 
 /* =========================================================
    WATCHLIST ITEM
+
+   Desktop : actions appear on hover.
+   Touch   : tap the row to toggle the actions (is-open).
 ========================================================= */
 
-const WatchListItem = ({
-  stock,
-}) => {
+const WatchListItem = ({ stock }) => {
+  const [isOpen, setIsOpen] =
+    useState(false);
 
-  const isDown =
-    Boolean(stock.isDown);
-
+  const isDown = Boolean(stock.isDown);
 
   return (
-    <div className="watchlist-item">
+    <div
+      className={
+        isOpen
+          ? "watchlist-item is-open"
+          : "watchlist-item"
+      }
+      onClick={() =>
+        setIsOpen((previous) => !previous)
+      }
+    >
 
-      {/* =================================================
-          NORMAL VIEW
-      ================================================= */}
+      {/* NORMAL VIEW */}
 
       <div className="watchlist-normal">
 
         <div className="stock-left">
-
           <span
             className={
               isDown
@@ -256,9 +202,7 @@ const WatchListItem = ({
           >
             {stock.name}
           </span>
-
         </div>
-
 
         <div className="stock-right">
 
@@ -273,28 +217,16 @@ const WatchListItem = ({
             {stock.percent}
           </span>
 
-
           {isDown ? (
-
-            <KeyboardArrowDown
-              className="stock-arrow down"
-            />
-
+            <KeyboardArrowDown className="stock-arrow down" />
           ) : (
-
-            <KeyboardArrowUp
-              className="stock-arrow up"
-            />
-
+            <KeyboardArrowUp className="stock-arrow up" />
           )}
 
-
           <span className="stock-price">
-
             {Number(
               stock.price || 0
             ).toFixed(2)}
-
           </span>
 
         </div>
@@ -302,13 +234,12 @@ const WatchListItem = ({
       </div>
 
 
-      {/* =================================================
-          ACTIONS
-      ================================================= */}
+      {/* ACTIONS */}
 
       <WatchListActions
         uid={stock.name}
         price={stock.price}
+        onDone={() => setIsOpen(false)}
       />
 
     </div>
@@ -323,71 +254,46 @@ const WatchListItem = ({
 const WatchListActions = ({
   uid,
   price,
+  onDone,
 }) => {
-
   const generalContext =
-    useContext(
-      GeneralContext
-    );
-
-
-  /* =======================================================
-     BUY
-  ======================================================= */
+    useContext(GeneralContext);
 
   const handleBuy = (e) => {
-
     e.stopPropagation();
 
     generalContext.openBuyWindow(
       uid,
       price
     );
+
+    onDone?.();
   };
 
-
-  /* =======================================================
-     SELL
-  ======================================================= */
-
   const handleSell = (e) => {
-
     e.stopPropagation();
 
     generalContext.openSellWindow(
       uid,
       price
     );
+
+    onDone?.();
   };
-
-
-  /* =======================================================
-     ANALYTICS
-  ======================================================= */
 
   const handleAnalytics = (e) => {
     e.stopPropagation();
   };
 
-
-  /* =======================================================
-     MORE
-  ======================================================= */
-
   const handleMore = (e) => {
     e.stopPropagation();
   };
 
-
   return (
     <div
       className="watchlist-actions"
-      onClick={(e) =>
-        e.stopPropagation()
-      }
+      onClick={(e) => e.stopPropagation()}
     >
-
-      {/* BUY */}
 
       <Tooltip
         title="Buy (B)"
@@ -403,9 +309,6 @@ const WatchListActions = ({
         </button>
       </Tooltip>
 
-
-      {/* SELL */}
-
       <Tooltip
         title="Sell (S)"
         placement="top"
@@ -420,9 +323,6 @@ const WatchListActions = ({
         </button>
       </Tooltip>
 
-
-      {/* ANALYTICS */}
-
       <Tooltip
         title="Analytics (A)"
         placement="top"
@@ -431,16 +331,11 @@ const WatchListActions = ({
         <button
           type="button"
           className="action-icon"
-          onClick={
-            handleAnalytics
-          }
+          onClick={handleAnalytics}
         >
           <BarChartOutlined />
         </button>
       </Tooltip>
-
-
-      {/* MORE */}
 
       <Tooltip
         title="More"
